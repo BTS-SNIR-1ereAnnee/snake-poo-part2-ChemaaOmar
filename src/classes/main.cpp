@@ -28,7 +28,7 @@ int kbhit(void)    /* Cette fonction retourne si une touche est appuyé par l'ut
 
 
 
-	ch = getch();
+	ch = getch(); //le getch sert a passer la main a l'utilisateur afin que ce dernier puisse saisir un caractère
 	if( ch == ERR)
 		r = FALSE;
 	else
@@ -63,22 +63,22 @@ int main()
 	{
 
 		if(kbhit()) {
-			switch (getch()){
-				case 259:
-				derniereDir = TOUCHE_KEY_UP;
-				serpent.move(TOUCHE_KEY_UP);
+			switch (getch()){   
+				case 259:					//gére les different deplacement	
+				derniereDir = TOUCHE_KEY_UP; 	 
+				serpent.move(TOUCHE_KEY_UP);//pour monter
 				break;
 				case 260:
 				derniereDir = TOUCHE_KEY_LEFT;
-				serpent.move(TOUCHE_KEY_LEFT);
+				serpent.move(TOUCHE_KEY_LEFT);//pour tourner a gauche
 				break;
 				case 258:
 				derniereDir = TOUCHE_KEY_DOWN;
-				serpent.move(TOUCHE_KEY_DOWN);
+				serpent.move(TOUCHE_KEY_DOWN);//pour aller a droite
 				break;
 				case 261:
 				derniereDir = TOUCHE_KEY_RIGHT;
-				serpent.move(TOUCHE_KEY_RIGHT);
+				serpent.move(TOUCHE_KEY_RIGHT);//pour aller a droite
 				break;
 			}
 
@@ -88,8 +88,8 @@ int main()
 			serpent.move (derniereDir);
 
 		}
-		serpent.affichSerpent();
-		usleep (150000);
+		serpent.affichSerpent(); //utilise la methode "affichSerpent" en utilisant la classe serpent 
+		usleep (150000); //suspend le serpend pendant quelque microsecondes
 
 	}
     //getchar();

@@ -4,6 +4,7 @@
 using namespace std;
 
 
+
 // Initialisation du singleton à NULL
 Board *Board::_singleton = NULL;
 
