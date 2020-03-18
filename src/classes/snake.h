@@ -32,7 +32,7 @@ public:
     /** affiche le serpent
     */
     void affichSerpent();
-
+    bool checkColisionWithBoard();
 
 private:
     /** tableau de point, corps du serpent*/
