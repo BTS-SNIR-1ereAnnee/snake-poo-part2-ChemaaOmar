@@ -64,21 +64,21 @@ int main()
 
 		if(kbhit()) {
 			switch (getch()){   
-				case 259:					//gére les different deplacement	
+				case 259:						//gére les different deplacement	
 				derniereDir = TOUCHE_KEY_UP; 	 
-				serpent.move(TOUCHE_KEY_UP);//pour monter
+				//pour monter
 				break;
 				case 260:
 				derniereDir = TOUCHE_KEY_LEFT;
-				serpent.move(TOUCHE_KEY_LEFT);//pour tourner a gauche
+				//pour tourner a gauche
 				break;
 				case 258:
 				derniereDir = TOUCHE_KEY_DOWN;
-				serpent.move(TOUCHE_KEY_DOWN);//pour aller a droite
+				//pour aller a droite
 				break;
 				case 261:
 				derniereDir = TOUCHE_KEY_RIGHT;
-				serpent.move(TOUCHE_KEY_RIGHT);//pour aller a droite
+				//pour aller a droite
 				break;
 			}
 
