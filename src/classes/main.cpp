@@ -21,38 +21,38 @@ using namespace std;
 
 int kbhit(void)    /* Cette fonction retourne si une touche est appuyé par l'utilisateur https://github.com/ajpaulson/learning-ncurses/blob/master/kbhit.c */
 {
-    int ch, r;
+	int ch, r;
 
 
-    nodelay(stdscr, TRUE);
+	nodelay(stdscr, TRUE);
 
 
 
-    ch = getch();
-    if( ch == ERR)
-            r = FALSE;
-    else
-    {
-            r = TRUE;
-            ungetch(ch);
-    }
+	ch = getch();
+	if( ch == ERR)
+		r = FALSE;
+	else
+	{
+		r = TRUE;
+		ungetch(ch);
+	}
 
 
-    echo();
-    nodelay(stdscr, FALSE);
-    return(r);
+	echo();
+	nodelay(stdscr, FALSE);
+	return(r);
 }
 
 int main()
 {
-    int derniereDir=TOUCHE_KEY_DOWN;
+	int derniereDir=TOUCHE_KEY_DOWN;
 
     // pointeurs sur l'unique instance de la classe UniqueObject
-    Board *fenetre;
+	Board *fenetre;
     // initialisation des pointeurs
-    fenetre = Board::getInstance ();
+	fenetre = Board::getInstance ();
 
-    snake serpent(10,4);
+	snake serpent(10,4);
 
 
 
@@ -65,34 +65,34 @@ int main()
 		if(kbhit()) {
 			switch (getch()){
 				case 259:
-					derniereDir = TOUCHE_KEY_UP;
-					serpent.move(TOUCHE_KEY_UP);
-					break;
+				derniereDir = TOUCHE_KEY_UP;
+				serpent.move(TOUCHE_KEY_UP);
+				break;
 				case 260:
-					derniereDir = TOUCHE_KEY_LEFT;
-					serpent.move(TOUCHE_KEY_LEFT);
-					break;
+				derniereDir = TOUCHE_KEY_LEFT;
+				serpent.move(TOUCHE_KEY_LEFT);
+				break;
 				case 258:
-				    derniereDir = TOUCHE_KEY_DOWN;
-					serpent.move(TOUCHE_KEY_DOWN);
-					break;
+				derniereDir = TOUCHE_KEY_DOWN;
+				serpent.move(TOUCHE_KEY_DOWN);
+				break;
 				case 261:
-				    derniereDir = TOUCHE_KEY_RIGHT;
-					serpent.move(TOUCHE_KEY_RIGHT);
-					break;
+				derniereDir = TOUCHE_KEY_RIGHT;
+				serpent.move(TOUCHE_KEY_RIGHT);
+				break;
 			}
 
 
 
 		}else{ //move left
-		    serpent.move (derniereDir);
+			serpent.move (derniereDir);
 
 		}
 		serpent.affichSerpent();
-        usleep (150000);
+		usleep (150000);
 
 	}
     //getchar();
-    fenetre->kill();
-    return 0;
+	fenetre->kill();
+	return 0;
 };
