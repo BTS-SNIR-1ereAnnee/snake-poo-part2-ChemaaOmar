@@ -11,6 +11,7 @@ Board *Board::_singleton = NULL;
 Board *Board::getInstance ()
   {
     if (NULL == _singleton)
+    djdjd
       {
         _singleton =  new Board;
       }
