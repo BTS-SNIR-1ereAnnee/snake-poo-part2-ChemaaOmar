@@ -8,13 +8,21 @@ using namespace std;
 Point::Point()
 {
     m_x = m_y = 10;
-	cout<<"quelque chose"<< endl;
+    m_char = '*';
 }
+
 Point::Point(int x, int y)
 {
     this->m_x = x;
     this->m_y = y;
-	cout<<"quelque chose"<< endl;
+    m_char = '*';
+}
+
+Point::Point(int x, int y, char caractere)
+{
+    this->m_x = x;
+    this->m_y = y;
+    m_char = caractere;
 }
 
 void Point::setPoint(int x, int y)
@@ -23,24 +31,31 @@ void Point::setPoint(int x, int y)
     this->m_y = y;
 }
 
+
+
 void Point::moveDown()
 {
     m_y++;
 }
+
 
 void Point::moveUp()
 {
     m_y--;
 }
 
+
 void Point::moveRight()
 {
     m_x++;
 }
+
+
 void Point::moveLeft()
 {
     m_x--;
 }
+
 
 int Point::getX() const
 {
@@ -53,34 +68,48 @@ void Point::setX(int val)
     m_x = val;
 }
 
+
 int Point::getY() const
 {
     return m_y;
 }
+
 
 void Point::setY(int val)
 {
     m_y = val;
 }
 
+void Point::drawPoint() //Dessine les points
 
-void Point::drawPoint()
 {
     Board *b;
-    b = Board::getInstance(); // dessine les points
+    b = Board::getInstance(); 
     b->dessinerPoint(*this);
 }
 
-void Point::erasePoint()
+
+void Point::erasePoint() //Efface les points 
 {
     Board *b;
-    b = Board::getInstance(); //efface les points
+    b = Board::getInstance();
     b->effacerPoint(*this);
 }
+
 
 void Point::debug()
 {
     cout << "(" << this->m_x << "," << this->m_y << ")";
+}
+
+
+void Point::setChar(char caractere){
+    m_char = caractere;
+}
+
+
+char Point::getChar(){
+    return m_char;
 }
 
 Point::~Point()

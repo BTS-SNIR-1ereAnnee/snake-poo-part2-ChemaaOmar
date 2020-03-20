@@ -11,7 +11,6 @@ Board *Board::_singleton = NULL;
 Board *Board::getInstance ()
   {
     if (NULL == _singleton)
-    djdjd
       {
         _singleton =  new Board;
       }
@@ -33,22 +32,20 @@ Board::Board()
 {
     initscr();
     clear();
-
+    m_sizeY = 20;
+    m_sizeX = 30;
     this->dessinerPlateau();
 }
 
 Board::~Board()
 {
     endwin();//RAZ du curseur
-    cout<<"Destruction du plateau"<<endl;
+    cout<<"Fin de la partie"<<endl;
 }
 
 void Board::dessinerPlateau()
 {
-    m_sizeX = 30;
-    m_sizeY = 20;
     this->m_boite = subwin(stdscr, m_sizeY, m_sizeX, 0, 0);
-
     box(this->m_boite, ACS_VLINE, ACS_HLINE); // ACS_VLINE et ACS_HLINE sont des constantes qui génèrent des bordures par défaut
     wrefresh(m_boite);
 }
@@ -56,7 +53,7 @@ void Board::dessinerPlateau()
 
 void Board::dessinerPoint(Point &p){
     wmove(m_boite, p.getY(), p.getX());
-    waddch(m_boite,'*');
+    waddch(m_boite,p.getChar());
     wrefresh(m_boite);
 
 }
@@ -68,10 +65,10 @@ void Board::effacerPoint(Point &p){
 
 }
 
-int Board::getXSize(){
+int Board::getSizeX() const{
     return m_sizeX;
 }
-int Board::getYSize(){
+
+int Board::getSizeY() const{
     return m_sizeY;
 }
-

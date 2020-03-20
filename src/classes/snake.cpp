@@ -6,39 +6,40 @@
 
 using namespace std ;
 
+//Constructeur par défaut
 snake::snake()
 {
-    for(int x = 0; x < longeur; x++)
+    for(int i = 0; i < taille; i++)
     {
-        serpent[x].setPoint(0,x);
+        serpent[i].setPoint(0,i);
     }
 }
 
-
+//Constructeur 
 snake::snake(int x,int y)
 {
-    for(int d = 0; d < longeur; d++)
+    for(int i = 0; i < taille; i++)
     {
-        serpent[d].setPoint(x,d+y);
+        serpent[i].setPoint(x,i+y);
     }
 }
 
 
-void snake::affichSerpent()
+void snake::afficheSerpent()    //Affiche le serpent
 {
-    /**Parcours du tableau*/
-    for(int d = 0; d < longeur; d++)
+    for(int i = 0; i < taille; i++)
     {
-        serpent[d].drawPoint(); /** utilisation de la méthode drawPoint*/
+        serpent[i].drawPoint(); 
     }
 }
 
-void snake::move(int direction)
+
+void snake::move(int direction) //Déplace le serpent
 {
-    for(int d = longeur; d > 0 ; d--)
+    for(int i = taille; i > 0 ; i--)
     {
-        serpent[d].erasePoint();
-        serpent[d] = serpent[d-1];
+        serpent[i].erasePoint();
+        serpent[i] = serpent[i-1];
 
     }
 
@@ -62,12 +63,23 @@ void snake::move(int direction)
 
 }
 
-bool snake::checkColisionWithBoard()
-{
+
+bool snake::collisionBord(){  //Quand le serpent touche un bord le programme s'arrete
     Board *b;
-    b = Board::getInstance(); // on recup l'instance de board
-    if (serpent[0].getX() == 0 || serpent[0].getX() == b->getXSize()-1) return TRUE;
-    if (serpent[0].getY() == 0 || serpent[0].getY() == b->getYSize()-1) return TRUE;
+    b = Board::getInstance(); 
+    if(serpent[0].getX() == 0 || serpent[0].getY() == 0 || serpent[0].getX() == b->getSizeX()-1 || serpent[0].getY() == b->getSizeY()-1)
+        return TRUE;
+
     return FALSE;
 }
 
+bool snake::collisionSerpent(){
+
+    for(int i=1;i<taille;i++)
+    {
+        if(serpent[0].getX()==serpent[i].getX() && serpent[0].getY()==serpent[i].getY()){
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
