@@ -40,7 +40,7 @@ Board::Board()
 Board::~Board()
 {
     endwin();//RAZ du curseur
-    cout<<"Fin de la partie"<<endl;
+    cout<<"Partie terminée"<<endl;
 }
 
 void Board::dessinerPlateau()

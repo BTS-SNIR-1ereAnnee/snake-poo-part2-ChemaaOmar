@@ -8,7 +8,7 @@ using namespace std;
 Point::Point()
 {
     m_x = m_y = 10;
-    m_caractere = '*';
+    m_caractere = '@';
 }
 
 Point::Point(int x, int y)

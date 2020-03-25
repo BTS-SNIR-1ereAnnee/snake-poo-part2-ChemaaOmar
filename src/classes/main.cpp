@@ -37,44 +37,40 @@ int main()
     fenetre = Board::getInstance ();
     snake serpent(10,10);
 	keypad (stdscr,true);
-	curs_set(0);
+	noecho();
 
 	
-	while (!(serpent.collisionBord() || serpent.collisionSerpent()))	//Permet au deplacement du serpent
-	{	if(kbhit())
-		{
-			switch (getch()){
 
-				
-				case 259:
-				derniereDir = TOUCHE_KEY_UP;  //Bouge en haut
-				break;
+bool collision = FALSE;
+    while (!collision)
+    {
+        if(kbhit())
+        {
+            switch (getch())
+            {
+            case 259:
+                derniereDir = TOUCHE_KEY_UP;
+                break;
+            case 260:
+                derniereDir = TOUCHE_KEY_LEFT;
+                break;
+            case 258:
+                derniereDir = TOUCHE_KEY_DOWN;
+                break;
+            case 261:
+                derniereDir = TOUCHE_KEY_RIGHT;
 
-				
-				case 260:
-				derniereDir = TOUCHE_KEY_LEFT;	//Bouge a gauche 
-				break;
+                break;
+            }
 
-				case 258:
-				derniereDir = TOUCHE_KEY_DOWN;//Bouge a droite
-				break;
+        }
+        serpent.move(derniereDir);
+        collision = serpent.collisionBord() || serpent.collisionSerpent();
+        serpent.afficheSerpent();
+        usleep (150000);
 
-				
-				case 261:
-				derniereDir = TOUCHE_KEY_RIGHT; //Bouge en bas
-				break;
-			}
-			serpent.move(derniereDir);//Déplace serpent
-
-		}else{
-			serpent.move(derniereDir);
-		}
-
-		serpent.afficheSerpent();//Affiche serpent
-		usleep (100000);
-	}
-			
-			clear();
-			fenetre->kill();
-			return 0;
+    }
+    //getchar();
+    fenetre->kill();
+    return 0;
 };
